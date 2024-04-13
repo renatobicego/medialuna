@@ -3,7 +3,7 @@ import "./globals.css";
 import { Bricolage_Grotesque } from "next/font/google";
 import { Providers } from "./providers";
 
-const bricolage = Bricolage_Grotesque({ subsets: ["latin"] });
+const bricolage = Bricolage_Grotesque({ subsets: ["latin"], display: 'swap', adjustFontFallback: false });
 
 export const metadata: Metadata = {
   title: "Medialuna",

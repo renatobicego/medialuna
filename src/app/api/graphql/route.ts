@@ -15,7 +15,7 @@ const connectDB = async () => {
       console.error(error);
     }
   };
-connectDB();
+// connectDB();
 
 // export async function GET(request: NextRequest) {
 //   return handler(request);
