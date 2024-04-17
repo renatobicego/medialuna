@@ -5,7 +5,7 @@ import {
     deleteObject,
     StorageError,
   } from "firebase/storage";
-  import { storage } from "../../firebase";
+  import { storage } from "../firebase";
   import { v1 as uuidv1 } from 'uuid';
   
   const uploadFileFirebase = (file: File, refRoute: string) => {
