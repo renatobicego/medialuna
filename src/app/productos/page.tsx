@@ -5,7 +5,7 @@ import Products from "./Products";
 import TitleBreadcrumbs from "./TitleBreadcrumbs";
 
 export default async function Productos() {
-  const products = await getProducts()
+  const {products} = await getProducts()
   const {categories} = await getCategories()
   return (
     <>

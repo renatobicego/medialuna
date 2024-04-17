@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 import RelatedProducts from "./RelatedProducts";
 
 const getProduct = async(id: string) => {
-  const res = await fetch(`${process.env.URL}/api/products/details/${id}`, {cache: 'no-cache'})
+  const res = await fetch(`${process.env.URL}/api/products/details/${id}`, {next: {revalidate: 60}})
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Error en el servidor')
