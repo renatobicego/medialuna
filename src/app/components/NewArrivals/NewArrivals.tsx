@@ -27,7 +27,7 @@ const NewArrivals = async () => {
     "
     >
       <h2 className="title text-white font-medium ml-2 ">Nuevos Ingresos</h2>
-      <CardGrid cardType={CardType.product} items={products || []} />
+      <CardGrid cardType={CardType.product} items={products} />
       <Button
         as={Link}
         className="bg-white text-negro py-2 px-6 font-semibold h-auto rounded-2xl self-center md:text-lg lg:text-xl"
