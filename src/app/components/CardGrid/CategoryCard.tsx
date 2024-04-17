@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Category } from "@/app/dataTypes";
+import { Category } from "@/app/util/dataTypes";
 
 const CategoryCard = ({ category }: { category: Category }) => {
   return (

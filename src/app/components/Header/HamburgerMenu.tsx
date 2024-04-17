@@ -15,30 +15,30 @@ const HamburgerMenu = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
     {
       key: "inicio",
       text: "Inicio",
-      href: "#",
+      href: "/",
     },
     {
       key: "medias",
       text: "Medias",
-      href: "#",
+      href: "/productos",
     },
     {
       key: "categoria",
-      text: "Categorías",
-      href: "#",
+      text: "Contacto",
+      href: "/#contacto",
     },
   ];
   const socialMenuItems = [
     {
       key: "instagram",
       text: "medialuna.mza",
-      href: "#",
+      href: "https://www.instagram.com/medialuna.mza/",
       icon: <FaInstagram className="w-6 xs:w-7 h-6 xs:h-7" />,
     },
     {
       key: "telefono",
       text: "+54 9 2617 49-2914",
-      href: "#",
+      href: "https://wa.me/542617492914",
       icon: <FaWhatsapp className="w-6 xs:w-7 h-6 xs:h-7" />,
     },
   ];
@@ -90,6 +90,7 @@ const HamburgerMenu = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
               <Button
                 disableRipple
                 size="md"
+                target="_blank"
                 startContent={item.icon}
                 variant="light"
                 className="underline text-white p-0 text-sm max-xs:h-auto mt-1"

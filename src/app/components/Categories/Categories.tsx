@@ -1,26 +1,9 @@
-import { CardType, Category } from "@/app/dataTypes";
+import { CardType } from "@/app/util/dataTypes";
 import CardGrid from "../CardGrid/CardGrid"
+import { getCategories } from "@/app/util/fetchData";
 
-const categories: Category[] = [
-    {
-      name: "Medias 3/4",
-      image: "/illustrations/ejemplo.png",
-    },
-    {
-      name: "Soquetes",
-      image: "/illustrations/ejemplo.png",
-    },
-    {
-      name: "Tenis",
-      image: "/illustrations/ejemplo.png",
-    },
-    {
-      name: "Premium",
-      image: "/illustrations/ejemplo.png",
-    },
-  ];
-
-const Categories = () => {
+const Categories = async() => {
+  const {categories} = await getCategories()
   return (
     <section className="flex flex-col px-4 pt-10 pb-16  bg-azul rounded-[40px] w-screen items-start gap-5
       md:w-[95vw] md:px-8 lg:w-[55%]

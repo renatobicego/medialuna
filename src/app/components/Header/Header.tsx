@@ -10,36 +10,9 @@ import {
 import Image from "next/image";
 import DropdownMedias from "./DropdownMedias";
 import HamburgerMenu from "./HamburgerMenu";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
-
-const useScrollPosition = () => {
-    const [scrollPosition, setScrollPosition] = useState({
-        x: 0,
-        y: 0,
-      });
-
-    useEffect(() => {
-        const updateScrollPosition = () => {
-            setScrollPosition({
-                x: window.scrollX,
-                y: window.scrollY,
-            });
-        };
-
-        if(typeof window !== 'undefined'){
-            updateScrollPosition();
-        }
-
-        window.addEventListener('scroll', updateScrollPosition);
-
-        return () => {
-            window.removeEventListener('scroll', updateScrollPosition);
-        };
-    }, []);
-    return scrollPosition;
-}
-
+import useScrollPosition from "@/app/util/hooks/useScrollPosition";
 
 const Header = ({ color, textColor }: { color: string, textColor: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

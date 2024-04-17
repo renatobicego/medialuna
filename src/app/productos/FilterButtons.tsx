@@ -1,25 +1,32 @@
 "use client";
 import {
   Button,
-  ButtonGroup,
   Dropdown,
   DropdownItem,
   DropdownMenu,
-  DropdownSection,
   DropdownTrigger,
   Selection,
 } from "@nextui-org/react";
-import { useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import { FaFilter } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa6";
 import { LuChevronsUpDown } from "react-icons/lu";
+import { Category } from "../util/dataTypes";
 
-const FilterButtons = () => {
-  const [selectedOrder, setSelectedOrder] = useState<Selection>(new Set([""]));
-  const [selectedFilter, setSelectedFilter] = useState<Selection>(
-    new Set([""])
-  );
+type FilterButtonsProps = {
+  selectedOrder: Selection;
+  selectedFilter: Selection;
+  setSelectedFilter: Dispatch<SetStateAction<Selection>>;
+  setSelectedOrder: Dispatch<SetStateAction<Selection>>;
+  categories: Category[];
+};
 
+const FilterButtons = ({
+  selectedOrder,
+  selectedFilter,
+  setSelectedFilter,
+  setSelectedOrder,
+  categories,
+}: FilterButtonsProps) => {
   const orderOptions: Record<string, string> = {
     aZ: "A - Z",
     zA: "Z - A",
@@ -27,25 +34,23 @@ const FilterButtons = () => {
     precioMayorMenor: "Precio mayor a menor",
   };
 
-  const filterOptions: Record<string, string> = {
-    merge: "Create a merge commit",
-    squash: "Squash and merge",
-    rebase: "Rebase and merge",
-  };
-
-  const categoriesOptions: Record<string, string> = {
-    medias34: "Medias 3/4",
-    soquetes: "Soquetes",
-    tenis: "Tenis",
-    premium: "Premium",
-  };
+  // Generate categoriesOptions from the categories array
+  const categoriesOptions: Record<string, string> = useMemo(() => {
+    const options: Record<string, string> = {};
+    categories.forEach((category) => {
+      options[category._id] = category.name;
+    });
+    return options;
+  }, [categories]);
 
   // Convert the Set to an Array and get the first value.
   const selectedOrderValue = Array.from(selectedOrder)[0];
-  const selectedFilterValue = useMemo(
-    () => Array.from(selectedFilter).join(", ").replaceAll("_", " "),
-    [selectedFilter]
-  );
+  const selectedFilterValue = useMemo(() => {
+    const selectedFilterNames = Array.from(selectedFilter).map(
+      (key) => categoriesOptions[key]
+    );
+    return selectedFilterNames.join(", ");
+  }, [selectedFilter, categoriesOptions]);
 
   return (
     <div className="flex items-center gap-3 w-full flex-wrap md:w-auto">
@@ -57,7 +62,7 @@ const FilterButtons = () => {
             size="lg"
             endContent={<FaFilter className="text-white" />}
           >
-            {selectedFilterValue ? selectedFilterValue : "Categoría"}
+            {selectedFilterValue || "Categoría"}
           </Button>
         </DropdownTrigger>
         <DropdownMenu
@@ -68,16 +73,9 @@ const FilterButtons = () => {
           onSelectionChange={(option: Selection) => setSelectedFilter(option)}
           className="max-w-[80vw]"
         >
-          <DropdownItem key="medias34">
-            {categoriesOptions["medias34"]}
-          </DropdownItem>
-          <DropdownItem key="tenis">{categoriesOptions["tenis"]}</DropdownItem>
-          <DropdownItem key="soquetes">
-            {categoriesOptions["soquetes"]}
-          </DropdownItem>
-          <DropdownItem key="premium">
-            {categoriesOptions["premium"]}
-          </DropdownItem>
+          {Object.entries(categoriesOptions).map(([key, value]) => (
+            <DropdownItem key={key}>{value}</DropdownItem>
+          ))}
         </DropdownMenu>
       </Dropdown>
       <Dropdown placement="bottom-end">

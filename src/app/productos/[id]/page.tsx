@@ -1,25 +1,27 @@
-"use client"
 import Footer from "@/app/components/Footer/Footer";
 import Header from "@/app/components/Header/Header";
 import ProductCard from "./ProductCard";
-import { Product } from "@/app/dataTypes";
 import RelatedProducts from "./RelatedProducts";
 
-
-export default function ProductoDetalle() {
-  const product: Product = {
-    image: '/illustrations/ejemplo3.webp',
-    name: "Néstor y Cristina",
-    price: 2000,
-    category: ['Medias 3/4', 'Premium']
+const getProduct = async(id: string) => {
+  const res = await fetch(`${process.env.URL}/api/products/details/${id}`, {cache: 'no-cache'})
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Error en el servidor')
   }
+  return res.json()
+}
+
+
+export default async function ProductoDetalle({params} : {params: {id: string}}) {
+  const {product, relatedProducts} = await getProduct(params.id)
   return (
     <>
       <Header color="26, 144, 112" textColor="text-white" />
       <div className="fixed left-0 top-0 w-screen h-screen bg-verde -z-10"></div>
       <main className="main-section bg-verde">
         <ProductCard product={product}/>
-        <RelatedProducts />
+        <RelatedProducts products={relatedProducts}/>
       </main>
       <Footer bgColor="bg-verde" textColor={"text-white"} />
     </>

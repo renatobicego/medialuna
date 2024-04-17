@@ -11,10 +11,10 @@ import {
 } from "@nextui-org/react";
 import { useState } from "react";
 import NextImage from "next/image";
-import { Product } from "@/app/dataTypes";
+import { ProductServer } from "@/app/util/dataTypes";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({ product }: { product: ProductServer }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const breadcrumbsItems = [
     {
@@ -44,12 +44,13 @@ const ProductCard = ({ product }: { product: Product }) => {
       icon: <FaWhatsapp className="w-6 xs:w-7 h-6 xs:h-7" />,
     },
   ];
+  
   return (
     <Card
       className="flex flex-col border rounded-[40px] w-[92vw] mx-auto items-start mt-0.5
             sm:w-[95vw] sm:flex-row sm:items-center lg:items-start"
     >
-      <Skeleton className="sm:w-[90%] md:w-1/2" isLoaded={imageLoaded}>
+      <Skeleton className="sm:w-[90%] md:w-1/2 h-[110%]" isLoaded={imageLoaded}>
         <Image
           width={2000}
           height={2000}
@@ -58,7 +59,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           src={product.image}
           alt={"Medias: " + product.name}
           classNames={{
-            wrapper: "max-sm:max-w-full h-auto",
+            wrapper: "max-sm:max-w-full h-full",
             img: "object-cover h-full",
           }}
           className={`rounded-none w-full`}
@@ -90,14 +91,16 @@ const ProductCard = ({ product }: { product: Product }) => {
             </BreadcrumbItem>
           ))}
         </Breadcrumbs>
-        <h2 className="font-medium text-xl xs:text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl 3xl:text-6xl">{product.name}</h2>
+        <h2 className="font-medium text-xl xs:text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl 3xl:text-6xl">
+          {product.name} {product.available ? '' : '(Sin Stock)'}
+        </h2>
         <div className="flex flex-wrap items-center gap-2">
-          {product.category?.map((item, i) => (
+          {product.categories?.map((item, i) => (
             <button
-              key={i}
+              key={item._id}
               className="py-1 px-3 text-sm lg:text-base rounded-3xl border border-negro text-negro"
             >
-              {item}
+              {item.name}
             </button>
           ))}
         </div>

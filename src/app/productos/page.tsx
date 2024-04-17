@@ -1,10 +1,12 @@
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
+import { getCategories, getProducts } from "../util/fetchData";
 import Products from "./Products";
 import TitleBreadcrumbs from "./TitleBreadcrumbs";
 
-export default function Productos() {
-  
+export default async function Productos() {
+  const products = await getProducts()
+  const {categories} = await getCategories()
   return (
     <>
       <Header color="26, 144, 112" textColor="text-white" />
@@ -16,7 +18,7 @@ export default function Productos() {
             3xl:px-12"
         >
           <TitleBreadcrumbs />
-          <Products />
+          <Products products={products} categories={categories}/>
         </section>
       </main>
       <Footer bgColor="bg-verde" textColor={"text-white"} />

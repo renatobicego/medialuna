@@ -8,28 +8,28 @@ const Footer = ({bgColor, textColor=""} : {bgColor: string, textColor?: string})
     {
       key: "inicio",
       text: "Inicio",
-      href: "#",
+      href: "/",
     },
     {
       key: "medias",
       text: "Medias",
-      href: "#",
+      href: "/productos",
     },
     {
       key: "categoria",
       text: "Categorías",
-      href: "/categorias",
+      href: "/#categorias",
     },
   ];
   const socialMenuItems = [
     {
       key: "instagram",
-      href: "#",
+      href: "https://www.instagram.com/medialuna.mza/",
       icon: <FaInstagram className={`w-4/5 h-4/5 xs:w-[90%] xs:h-[90%] text-negro ${textColor}`}/>,
     },
     {
       key: "telefono",
-      href: "#",
+      href: "https://wa.me/542617492914",
       icon: <FaWhatsapp className={`w-4/5 h-4/5 xs:w-[90%] xs:h-[90%] text-negro ${textColor}`}/>,
     },
   ];
@@ -55,6 +55,7 @@ const Footer = ({bgColor, textColor=""} : {bgColor: string, textColor?: string})
                   key={item.key}
                   as={Link}
                   href={item.href}
+                  target="_blank"
                   variant="light"
                   className={`p-0 justify-start`}
                   size="sm"
