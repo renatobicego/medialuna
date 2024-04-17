@@ -10,7 +10,7 @@ const Categories = async() => {
       3xl:px-12
     ">
       <h2 className="title text-white font-medium ml-2">Categorías</h2>
-      <CardGrid cardType={CardType.category} items={categories} />
+      <CardGrid cardType={CardType.category} items={categories || []} />
     </section>
   )
 }

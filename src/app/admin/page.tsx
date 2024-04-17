@@ -34,7 +34,7 @@ export default async function AdminPage(){
             Publicar producto
           </Button>
         </div>
-        <CardGrid cardType={CardType.product} items={products} />
+        <CardGrid cardType={CardType.product} items={products || []} />
       </section>
     </main>
   );

@@ -21,7 +21,7 @@ export default async function ProductoDetalle({params} : {params: {id: string}})
       <div className="fixed left-0 top-0 w-screen h-screen bg-verde -z-10"></div>
       <main className="main-section bg-verde">
         <ProductCard product={product}/>
-        <RelatedProducts products={relatedProducts}/>
+        <RelatedProducts products={relatedProducts || []}/>
       </main>
       <Footer bgColor="bg-verde" textColor={"text-white"} />
     </>
