@@ -15,7 +15,7 @@ export async function getCategories() {
 }
 
 export async function getProducts() {
-    const res = await fetch(process.env.URL + '/api/products', {next: { revalidate: 60 } })
+    const res = await fetch(process.env.URL + '/api/products')
     // The return value is *not* serialized
    
     if (!res.ok) {
