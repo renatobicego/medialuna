@@ -3,6 +3,7 @@ export const fetchCache = "force-no-store";
 import { Button, Link } from "@nextui-org/react";
 import CardGrid from "../CardGrid/CardGrid";
 import { CardType } from "@/app/util/dataTypes";
+import { getProducts } from "@/app/util/fetchData";
 
 // Function to shuffle an array using Fisher-Yates shuffle algorithm
 const shuffleArray = (array: any[]) => {
@@ -13,16 +14,6 @@ const shuffleArray = (array: any[]) => {
   return array;
 };
 
-export async function getProducts() {
-  const res = await fetch(process.env.URL + '/api/products')
-  // The return value is *not* serialized
- 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
-  return res.json()
-}
 
 const NewArrivals = async () => {
   const {products} = await getProducts();

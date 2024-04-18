@@ -1,4 +1,5 @@
-import { Category, Product, ProductServer } from "./dataTypes"
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 export async function getCategories() {
     const res = await fetch(process.env.URL + '/api/categories', {next: { revalidate: 3600 } })
