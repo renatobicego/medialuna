@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Product from "./models/ProductSchema";
 import connectMongo from "@/app/util/dbConnection";
 import { HttpStatusCode } from "axios";
+import Category from "../categories/models/CategorySchema";
 
 export type CreateProductDto = {
   name: string;
@@ -13,7 +14,7 @@ export type CreateProductDto = {
 export async function GET(request: NextRequest) {
   try {
     await connectMongo();
-    const products = await Product.find().populate('categories');
+    const products = await Product.find().populate({path: 'categories', model: Category});
     return NextResponse.json({ products });
   } catch (error) {
     return NextResponse.json({ error });
