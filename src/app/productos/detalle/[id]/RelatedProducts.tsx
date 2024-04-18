@@ -1,6 +1,5 @@
 import CardGrid from "@/app/components/CardGrid/CardGrid"
 import { CardType, Product } from "@/app/util/dataTypes"
-import { getProducts } from "@/app/util/fetchData"
 
 const RelatedProducts = async({products} : {products: Product[]}) => {
   if(products.length){

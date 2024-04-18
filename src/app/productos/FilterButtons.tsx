@@ -7,10 +7,15 @@ import {
   DropdownTrigger,
   Selection,
 } from "@nextui-org/react";
-import { Dispatch, SetStateAction, useMemo } from "react";
+import { Dispatch, SetStateAction, useCallback, useMemo } from "react";
 import { FaFilter } from "react-icons/fa";
 import { LuChevronsUpDown } from "react-icons/lu";
 import { Category } from "../util/dataTypes";
+import {
+  ReadonlyURLSearchParams,
+  usePathname,
+  useRouter,
+} from "next/navigation";
 
 type FilterButtonsProps = {
   selectedOrder: Selection;
@@ -18,6 +23,7 @@ type FilterButtonsProps = {
   setSelectedFilter: Dispatch<SetStateAction<Selection>>;
   setSelectedOrder: Dispatch<SetStateAction<Selection>>;
   categories: Category[];
+  searchParams: ReadonlyURLSearchParams;
 };
 
 const FilterButtons = ({
@@ -26,7 +32,11 @@ const FilterButtons = ({
   setSelectedFilter,
   setSelectedOrder,
   categories,
+  searchParams,
 }: FilterButtonsProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const orderOptions: Record<string, string> = {
     aZ: "A - Z",
     zA: "Z - A",
@@ -52,6 +62,18 @@ const FilterButtons = ({
     return selectedFilterNames.join(", ");
   }, [selectedFilter, categoriesOptions]);
 
+  // Get a new searchParams string by merging the current
+  // searchParams with a provided key/value pair
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   return (
     <div className="flex items-center gap-3 w-full flex-wrap md:w-auto">
       <Dropdown placement="bottom-end">
@@ -69,12 +91,23 @@ const FilterButtons = ({
           closeOnSelect={false}
           aria-label="Opciones de filtro de productos"
           selectedKeys={selectedFilter}
-          selectionMode="multiple"
+          selectionMode="single"
           onSelectionChange={(option: Selection) => setSelectedFilter(option)}
           className="max-w-[80vw]"
         >
           {Object.entries(categoriesOptions).map(([key, value]) => (
-            <DropdownItem key={key}>{value}</DropdownItem>
+            <DropdownItem
+              onClick={() => {
+                if(searchParams.get('categoria') === value){
+                  router.push('/productos')
+                }else{
+                  router.push(pathname + "?" + createQueryString("categoria", value));
+                }
+              }}
+              key={key}
+            >
+              {value}
+            </DropdownItem>
           ))}
         </DropdownMenu>
       </Dropdown>

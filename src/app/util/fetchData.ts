@@ -1,6 +1,3 @@
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
-
 export async function getCategories() {
     const res = await fetch(process.env.URL + '/api/categories', {next: { revalidate: 3600 } })
     // The return value is *not* serialized
@@ -16,7 +13,7 @@ export async function getCategories() {
 }
 
 export async function getProducts() {
-    const res = await fetch(process.env.URL + '/api/products')
+    const res = await fetch(process.env.URL + '/api/products', {cache: "no-cache"})
     // The return value is *not* serialized
    
     if (!res.ok) {

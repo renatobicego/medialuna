@@ -2,8 +2,9 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 import { Button, Link } from "@nextui-org/react";
 import CardGrid from "../CardGrid/CardGrid";
-import { CardType } from "@/app/util/dataTypes";
+import { CardType, ProductServer } from "@/app/util/dataTypes";
 import { getProducts } from "@/app/util/fetchData";
+import { productsUrl } from "@/app/util/urls";
 
 // Function to shuffle an array using Fisher-Yates shuffle algorithm
 const shuffleArray = (array: any[]) => {
@@ -16,12 +17,12 @@ const shuffleArray = (array: any[]) => {
 
 
 const NewArrivals = async () => {
-  const {products} = await getProducts();
-  // // Shuffle the products array
-  // const shuffledProducts = shuffleArray(products?.filter(product => product.available === true));
+  const {products} : {products: ProductServer[]} = await getProducts();
+  // Shuffle the products array
+  const shuffledProducts = shuffleArray(products.filter(product => product.available === true));
 
-  // // Limit the number of products to 6 items after shuffling
-  // const limitedProducts = shuffledProducts.slice(0, 6);
+  // Limit the number of products to 6 items after shuffling
+  const limitedProducts = shuffledProducts.slice(0, 6);
   return (
     <section
       className="flex flex-col px-4 py-10 max-md:min-h-[85vh] bg-verde rounded-[40px] w-screen  items-start gap-5
@@ -31,11 +32,11 @@ const NewArrivals = async () => {
     "
     >
       <h2 className="title text-white font-medium ml-2 ">Nuevos Ingresos</h2>
-      <CardGrid cardType={CardType.product} items={products} />
+      <CardGrid cardType={CardType.product} items={limitedProducts} />
       <Button
         as={Link}
         className="bg-white text-negro py-2 px-6 font-semibold h-auto rounded-2xl self-center md:text-lg lg:text-xl"
-        href="/productos"
+        href={productsUrl}
       >
         Ver Más
       </Button>

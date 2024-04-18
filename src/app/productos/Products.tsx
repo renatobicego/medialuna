@@ -4,7 +4,9 @@ import { FaSearch } from "react-icons/fa";
 import FilterButtons from "./FilterButtons";
 import CardGrid from "../components/CardGrid/CardGrid";
 import { CardType, Category, Product, ProductServer } from "../util/dataTypes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 
 const Products = ({
   products,
@@ -13,12 +15,26 @@ const Products = ({
   products: ProductServer[];
   categories: Category[];
 }) => {
+  const searchParams = useSearchParams();
+  const queryCategory = searchParams.get("categoria");
   const [searchValue, setSearchValue] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
   const [selectedOrder, setSelectedOrder] = useState<Selection>(new Set([]));
-  const [selectedFilter, setSelectedFilter] = useState<Selection>(
-    new Set([])
-  );
+  const [selectedFilter, setSelectedFilter] = useState<Selection>(new Set([]));
+
+  // Effect to update selectedFilter when queryCategory changes
+  useEffect(() => {
+    if (queryCategory) {
+      const categoryValue = categories.find(c => c.name === queryCategory)?._id as string;
+
+      // Set selectedFilter to a new Set containing the categoryValue
+      setSelectedFilter(new Set([categoryValue]));
+    } else {
+      // If queryCategory is not valid or not found in queryCategories, clear selectedFilter
+      setSelectedFilter(new Set([]));
+    }
+  }, [queryCategory]);
+
   useEffect(() => {
     // Function to filter and order products
     const filterAndOrderProducts = () => {
@@ -32,7 +48,7 @@ const Products = ({
         );
       }
 
-      const filtersKeys = selectedFilter as Set<string>
+      const filtersKeys = selectedFilter as Set<string>;
       // Filter by selected category filter
       if (filtersKeys.size > 0) {
         filtered = filtered.filter((product) =>
@@ -58,9 +74,16 @@ const Products = ({
       });
 
       // Move products with available: false to the end
-      const availableProducts = sortedProducts.filter((product) => product.available);
-      const unavailableProducts = sortedProducts.filter((product) => !product.available);
-      const finalSortedProducts = [...availableProducts, ...unavailableProducts];
+      const availableProducts = sortedProducts.filter(
+        (product) => product.available
+      );
+      const unavailableProducts = sortedProducts.filter(
+        (product) => !product.available
+      );
+      const finalSortedProducts = [
+        ...availableProducts,
+        ...unavailableProducts,
+      ];
 
       // Update filtered products state
       setFilteredProducts(finalSortedProducts);
@@ -95,6 +118,7 @@ const Products = ({
           setSelectedFilter={setSelectedFilter}
           setSelectedOrder={setSelectedOrder}
           categories={categories}
+          searchParams={searchParams}
         />
       </div>
       <CardGrid cardType={CardType.product} items={filteredProducts} />

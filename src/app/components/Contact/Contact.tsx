@@ -1,3 +1,4 @@
+import { instagramUrl, whatsappUrl } from "@/app/util/urls"
 import { Button, Link } from "@nextui-org/react"
 import Image from "next/image"
 import { FaInstagram, FaWhatsapp } from "react-icons/fa6"
@@ -5,7 +6,7 @@ import { FaInstagram, FaWhatsapp } from "react-icons/fa6"
 
 const Contact = () => {
   return (
-    <section className="flex flex-col sm:flex-row lg:flex-col overflow-hidden bg-amarillo 
+    <section id="contacto" className="flex flex-col sm:flex-row lg:flex-col overflow-hidden bg-amarillo 
     rounded-[40px] w-screen md:w-[95vw] items-start sm:items-center lg:flex-1">
         <Image
             src={'/illustrations/animacion-medias.gif'}
@@ -22,6 +23,8 @@ const Contact = () => {
             </h3>
             <Button
                 as={Link}
+                href={whatsappUrl}
+                target="_blank"
                 startContent={<FaWhatsapp className="w-8 h-8 xs:w-10 xs:h-10" />}
                 className="underline text-white p-0 text-xl xs:text-2xl 2xl:text-3xl font-medium mb-1 mt-3 xs:mb-2 xs:mt-4 "
                 size="lg"
@@ -31,6 +34,8 @@ const Contact = () => {
             </Button>
             <Button
                 as={Link}
+                href={instagramUrl}
+                target="_blank"
                 startContent={<FaInstagram className="w-8 h-8 xs:w-10 xs:h-10" />}
                 className="underline text-white p-0 text-xl xs:text-2xl 2xl:text-3xl font-medium "
                 size="lg"

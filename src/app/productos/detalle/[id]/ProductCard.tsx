@@ -13,6 +13,7 @@ import { useState } from "react";
 import NextImage from "next/image";
 import { ProductServer } from "@/app/util/dataTypes";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { instagramUrl, productsUrl, whatsappUrl } from "@/app/util/urls";
 
 const ProductCard = ({ product }: { product: ProductServer }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -22,11 +23,11 @@ const ProductCard = ({ product }: { product: ProductServer }) => {
       text: "Inicio",
     },
     {
-      href: "/productos",
+      href: productsUrl,
       text: "Nuestras Medias",
     },
     {
-      href: "/productos/" + product.name,
+      href: productsUrl + "/" + product.name,
       text: product.name,
     },
   ];
@@ -34,13 +35,13 @@ const ProductCard = ({ product }: { product: ProductServer }) => {
     {
       key: "instagram",
       text: "medialuna.mza",
-      href: "#",
+      href: instagramUrl,
       icon: <FaInstagram className="w-6 xs:w-7 h-6 xs:h-7" />,
     },
     {
       key: "telefono",
       text: "+54 9 2617 49-2914",
-      href: "#",
+      href: whatsappUrl,
       icon: <FaWhatsapp className="w-6 xs:w-7 h-6 xs:h-7" />,
     },
   ];

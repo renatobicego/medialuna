@@ -13,11 +13,12 @@ import HamburgerMenu from "./HamburgerMenu";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import useScrollPosition from "@/app/util/hooks/useScrollPosition";
+import { contactUrl, productsUrl } from "@/app/util/urls";
 
-const Header = ({ color, textColor }: { color: string, textColor: string }) => {
+const Header = ({ color, textColor }: { color: string; textColor: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname()
-  const {y: scrollY} = useScrollPosition()
+  const pathname = usePathname();
+  const { y: scrollY } = useScrollPosition();
   const opacity = Math.min(100 - Math.round(scrollY / 5), 100);
 
   const headerStyle = {
@@ -46,17 +47,20 @@ const Header = ({ color, textColor }: { color: string, textColor: string }) => {
         // menu: "pr-4 bg-rojo",
         toggleIcon: `bg-white h-8 xs:h-10 max-xs:before:w-5 max-xs:after:w-5 
         rounded-full text-rojo before:duration-300 after:duration-300 max-xs:before:-translate-y-[3px] max-xs:after:translate-y-[3px]`,
-        toggle: "xs:w-10 xs:h-10 h-8 w-8"
+        toggle: "xs:w-10 xs:h-10 h-8 w-8",
       }}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       shouldHideOnScroll
       motionProps={{
-        style: headerStyle
+        style: headerStyle,
       }}
     >
-      <NavbarContent className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full" justify="center">
-        <NavbarBrand as={Link} className={`h-full`} href={'/'}>
+      <NavbarContent
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-full"
+        justify="center"
+      >
+        <NavbarBrand as={Link} className={`h-full`} href={"/"}>
           <Image
             src={"/logo-medialuna.png"}
             alt="Logo de Medialuna"
@@ -68,15 +72,21 @@ const Header = ({ color, textColor }: { color: string, textColor: string }) => {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className={`hidden md:flex gap-4 !flex-grow-0 ${textColor}`} justify="end">
-        <NavbarItem isActive={pathname === '/'} className="mr-2">
+      <NavbarContent
+        className={`hidden md:flex gap-4 !flex-grow-0 ${textColor}`}
+        justify="end"
+      >
+        <NavbarItem isActive={pathname === "/"} className="mr-2">
           <Link href="/" aria-current="page" className={textColor}>
             Inicio
           </Link>
         </NavbarItem>
-        <DropdownMedias isActive={pathname.includes('/productos')} textColor={textColor}/>
+        <DropdownMedias
+          isActive={pathname.includes(productsUrl)}
+          textColor={textColor}
+        />
         <NavbarItem>
-          <Link color="foreground" href="/#contacto" className={textColor}>
+          <Link color="foreground" href={contactUrl} className={textColor}>
             Contacto
           </Link>
         </NavbarItem>
@@ -88,7 +98,7 @@ const Header = ({ color, textColor }: { color: string, textColor: string }) => {
           className="md:hidden "
         />
       </NavbarContent>
-      <HamburgerMenu isMenuOpen={isMenuOpen}/>
+      <HamburgerMenu isMenuOpen={isMenuOpen} />
     </Navbar>
   );
 };

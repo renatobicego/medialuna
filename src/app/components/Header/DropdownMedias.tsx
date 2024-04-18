@@ -1,3 +1,4 @@
+import { productsUrl } from "@/app/util/urls";
 import {
   Button,
   Dropdown,
@@ -34,32 +35,32 @@ const DropdownMedias = ({textColor, isActive}: {textColor: string, isActive: boo
       >
         <DropdownItem
           key="medias_3/4"
-          href="/productos"
+          href={productsUrl + '?categoria=Medias 3/4'}
         >
           Medias 3/4
         </DropdownItem>
         <DropdownItem
           key="soquetes"
-          href="/productos"
+          href={productsUrl + '?categoria=Soquetes'}
         >
           Soquetes
         </DropdownItem>
         <DropdownItem
           key="tenis"
-          href="/productos"
+          href={productsUrl + '?categoria=Tenis'}
 
         >
           Tenis
         </DropdownItem>
         <DropdownItem
           key="premium"
-          href="/productos"
+          href={productsUrl + '?categoria=Premium'}
         >
           Premium
         </DropdownItem>
         <DropdownItem
           key="premium"
-          href="/productos"
+          href={productsUrl}
         >
           Ver Todas
         </DropdownItem>

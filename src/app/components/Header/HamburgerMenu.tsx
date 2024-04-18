@@ -1,3 +1,4 @@
+import { contactUrl, instagramUrl, productsUrl, whatsappUrl } from "@/app/util/urls";
 import {
   Button,
   Link,
@@ -20,25 +21,25 @@ const HamburgerMenu = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
     {
       key: "medias",
       text: "Medias",
-      href: "/productos",
+      href: productsUrl,
     },
     {
       key: "categoria",
       text: "Contacto",
-      href: "/#contacto",
+      href: contactUrl,
     },
   ];
   const socialMenuItems = [
     {
       key: "instagram",
       text: "medialuna.mza",
-      href: "https://www.instagram.com/medialuna.mza/",
+      href: instagramUrl,
       icon: <FaInstagram className="w-6 xs:w-7 h-6 xs:h-7" />,
     },
     {
       key: "telefono",
       text: "+54 9 2617 49-2914",
-      href: "https://wa.me/542617492914",
+      href: whatsappUrl,
       icon: <FaWhatsapp className="w-6 xs:w-7 h-6 xs:h-7" />,
     },
   ];

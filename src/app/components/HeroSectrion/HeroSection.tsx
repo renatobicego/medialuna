@@ -1,3 +1,4 @@
+import { productsUrl } from "@/app/util/urls";
 import { Button, Link } from "@nextui-org/react";
 import Image from "next/image";
 import React from "react";
@@ -17,7 +18,7 @@ const HeroSection = () => {
         as={Link}
         className="bg-white text-rojo py-2 px-6 font-semibold h-auto rounded-2xl text-sm xs:text-lg data-[focus-visble=true]:outline-rojo lg:text-xl"
         size="lg"
-        href="/productos"
+        href={productsUrl}
       >
         Mirá nuestras medias
       </Button>

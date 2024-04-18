@@ -1,5 +1,6 @@
 "use client";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
+import { productsUrl } from "../util/urls";
 
 const TitleBreadcrumbs = () => {
   const breadcrumbsItems = [
@@ -8,7 +9,7 @@ const TitleBreadcrumbs = () => {
       text: "Inicio",
     },
     {
-      href: "/productos",
+      href: productsUrl,
       text: "Nuestras Medias",
     },
   ];

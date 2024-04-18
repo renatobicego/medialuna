@@ -4,6 +4,7 @@ import CategoryCard from "./CategoryCard";
 import { CardType, Category, Product, ProductServer } from "@/app/util/dataTypes";
 import { usePathname } from "next/navigation";
 import useWindowSize from "@/app/util/hooks/useWIndowSIze";
+import { productsUrl } from "@/app/util/urls";
 
 type CardGridProps = {
   cardType: CardType;
@@ -30,7 +31,7 @@ const CardGrid = ({ cardType, items }: CardGridProps) => {
     <div
       className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 xs:gap-3 w-full sm:gap-4 lg:gap-6 3xl:gap-8 ${
         cardType === CardType.category ? "2xl:grid-cols-2" : "2xl:grid-cols-3"
-      } ${pathname.includes("/productos") ? "lg:!grid-cols-4" : ""}`}
+      } ${pathname.includes(productsUrl) ? "lg:!grid-cols-4" : ""}`}
     >
       {itemsToRender.map(item => {
         if (cardType === CardType.product && "price" in item) {

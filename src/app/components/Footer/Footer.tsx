@@ -1,3 +1,4 @@
+import { instagramUrl, productsUrl, whatsappUrl } from "@/app/util/urls";
 import { Button, Link } from "@nextui-org/react";
 import Image from "next/image"
 import { FaInstagram } from "react-icons/fa";
@@ -13,7 +14,7 @@ const Footer = ({bgColor, textColor=""} : {bgColor: string, textColor?: string})
     {
       key: "medias",
       text: "Medias",
-      href: "/productos",
+      href: productsUrl,
     },
     {
       key: "categoria",
@@ -24,12 +25,12 @@ const Footer = ({bgColor, textColor=""} : {bgColor: string, textColor?: string})
   const socialMenuItems = [
     {
       key: "instagram",
-      href: "https://www.instagram.com/medialuna.mza/",
+      href: instagramUrl,
       icon: <FaInstagram className={`w-4/5 h-4/5 xs:w-[90%] xs:h-[90%] text-negro ${textColor}`}/>,
     },
     {
       key: "telefono",
-      href: "https://wa.me/542617492914",
+      href: whatsappUrl,
       icon: <FaWhatsapp className={`w-4/5 h-4/5 xs:w-[90%] xs:h-[90%] text-negro ${textColor}`}/>,
     },
   ];

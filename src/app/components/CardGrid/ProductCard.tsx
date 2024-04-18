@@ -8,6 +8,7 @@ import { FaCheck, FaTrash } from "react-icons/fa6";
 import axios from "axios";
 import { deleteFileFirebase } from "@/app/util/uploadFileFirebase";
 import { FaBan } from "react-icons/fa";
+import { productsUrl } from "@/app/util/urls";
 
 const ProductCard = ({ product }: { product: ProductServer}) => {
   const pathname = usePathname();
@@ -38,7 +39,7 @@ const ProductCard = ({ product }: { product: ProductServer}) => {
     >
       <Skeleton isLoaded={imageLoaded}>
         <Link
-          href={pathname.includes('/admin') ? `/admin/editar/${product._id}` : `/productos/${product._id}`}>
+          href={pathname.includes('/admin') ? `/admin/editar/${product._id}` : `${productsUrl}/detalle/${product._id}`}>
           <Image
             width={600}
             height={800}
@@ -51,7 +52,7 @@ const ProductCard = ({ product }: { product: ProductServer}) => {
             }}
             className={`rounded-none h-36 object-cover xs:h-48 lg:h-60 xl:h-64 
               ${
-                pathname.includes("/productos") || pathname.includes("/admin")
+                pathname.includes(productsUrl) || pathname.includes("/admin")
                   ? "lg:h-72 xl:h-80 2xl:h-[22rem] 3xl:h-96"
                   : ""
               }
