@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import { getCategories, getProducts } from "../util/fetchData";
@@ -18,7 +19,9 @@ export default async function Productos() {
             3xl:px-12"
         >
           <TitleBreadcrumbs />
-          <Products products={products} categories={categories || []}/>
+          <Suspense>
+            <Products products={products} categories={categories || []}/>
+          </Suspense>
         </section>
       </main>
       <Footer bgColor="bg-verde" textColor={"text-white"} />
