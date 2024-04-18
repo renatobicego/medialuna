@@ -18,7 +18,7 @@ export default async function Productos() {
             3xl:px-12"
         >
           <TitleBreadcrumbs />
-          <Products products={[]} categories={categories || []}/>
+          <Products products={products} categories={categories || []}/>
         </section>
       </main>
       <Footer bgColor="bg-verde" textColor={"text-white"} />
