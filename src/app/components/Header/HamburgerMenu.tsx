@@ -66,7 +66,7 @@ const HamburgerMenu = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
         className="md:hidden self-end mr-4"
       />
       <div className="flex w-[99%] flex-col items-start gap-1 xs:gap-2 border px-6 py-8 rounded-[40px] mx-auto mt-1">
-        <Input
+        {/* <Input
           label="Buscar Medias"
           className="mb-4"
           classNames={{
@@ -77,7 +77,7 @@ const HamburgerMenu = ({ isMenuOpen }: { isMenuOpen: boolean }) => {
           endContent={
             <FaSearch className="text-xl text-default-400 pointer-events-none flex-shrink-0" />
           }
-        />
+        /> */}
         {menuItems.map((item) => (
           <NavbarMenuItem key={item.key}>
             <Link className="w-full text-white max-xs:text-sm" href={item.href} size="md">
