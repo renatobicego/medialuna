@@ -13,7 +13,7 @@ export type CreateProductDto = {
 export async function GET(request: NextRequest) {
   try {
     await connectMongo();
-    const products = await Product.find();
+    const products = await Product.find().populate('categories');
     return NextResponse.json({ products });
   } catch (error) {
     return NextResponse.json({ error });
