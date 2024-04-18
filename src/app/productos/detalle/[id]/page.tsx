@@ -31,7 +31,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
  
   return {
-    title: product.name,
+    title: 'Medialuna |' + product.name,
     openGraph: {
       images: [product.image, ...previousImages],
     },

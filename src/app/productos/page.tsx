@@ -22,7 +22,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || []
  
   return {
-    title: categoria ? 'Categoria ' + categoria : 'Nuestras Medias',
+    title: categoria ? ' Medialuna | Categoria ' + categoria : 'Medialuna | Nuestras Medias',
     openGraph: {
       images: [...previousImages],
     },
