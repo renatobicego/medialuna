@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const ProductSchema = new Schema({
+const Product = new Schema({
   name: { type: String, required: [true, "Nombre requerido"] },
   categories: [{
     type: Schema.Types.ObjectId,
@@ -16,4 +16,4 @@ const ProductSchema = new Schema({
   available: {type: Boolean, default: true},
 });
 
-export default mongoose.models.Product || mongoose.model("Product", ProductSchema);
+export default mongoose.models.Product || mongoose.model("Product", Product);
