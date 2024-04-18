@@ -7,7 +7,6 @@ import { CardType, Category, Product, ProductServer } from "../util/dataTypes";
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-
 const Products = ({
   products,
   categories,
@@ -25,7 +24,8 @@ const Products = ({
   // Effect to update selectedFilter when queryCategory changes
   useEffect(() => {
     if (queryCategory) {
-      const categoryValue = categories.find(c => c.name === queryCategory)?._id as string;
+      const categoryValue = categories.find((c) => c.name === queryCategory)
+        ?._id as string;
 
       // Set selectedFilter to a new Set containing the categoryValue
       setSelectedFilter(new Set([categoryValue]));
@@ -33,7 +33,7 @@ const Products = ({
       // If queryCategory is not valid or not found in queryCategories, clear selectedFilter
       setSelectedFilter(new Set([]));
     }
-  }, [queryCategory]);
+  }, [categories, queryCategory]);
 
   useEffect(() => {
     // Function to filter and order products
@@ -122,6 +122,7 @@ const Products = ({
         />
       </div>
       <CardGrid cardType={CardType.product} items={filteredProducts} />
+      {filteredProducts.length === 0 && <h4 className="text-white md:text-lg 2xl:text-xl">No hay productos disponibles</h4>}
     </>
   );
 };

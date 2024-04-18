@@ -2,6 +2,7 @@ import Footer from "@/app/components/Footer/Footer";
 import Header from "@/app/components/Header/Header";
 import ProductCard from "./ProductCard";
 import RelatedProducts from "./RelatedProducts";
+import { Metadata, ResolvingMetadata } from "next";
 
 const getProduct = async(id: string) => {
   const res = await fetch(`${process.env.URL}/api/products/details/${id}`, {next: {revalidate: 60}})
@@ -10,6 +11,31 @@ const getProduct = async(id: string) => {
     throw new Error('Error en el servidor')
   }
   return res.json()
+}
+
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const id = params.id
+ 
+  const { product } = await getProduct(id)
+ 
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || []
+ 
+  return {
+    title: product.name,
+    openGraph: {
+      images: [product.image, ...previousImages],
+    },
+  }
 }
 
 

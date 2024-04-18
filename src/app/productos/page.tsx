@@ -4,6 +4,30 @@ import Header from "../components/Header/Header";
 import { getCategories, getProducts } from "../util/fetchData";
 import Products from "./Products";
 import TitleBreadcrumbs from "./TitleBreadcrumbs";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | undefined }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const categoria = searchParams.categoria
+ 
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || []
+ 
+  return {
+    title: categoria ? categoria : 'Neustras Medias',
+    openGraph: {
+      images: [...previousImages],
+    },
+  }
+}
 
 export default async function Productos() {
   const {products} = await getProducts()
