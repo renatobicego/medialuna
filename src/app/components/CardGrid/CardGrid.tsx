@@ -25,7 +25,7 @@ const CardGrid = ({ cardType, items }: CardGridProps) => {
   };
 
   // Filter items array based on the number to render
-  const itemsToRender = items.slice(0, getNumItemsToRender());
+  const itemsToRender = pathname === '/' ? items.slice(0, getNumItemsToRender()) : items;
 
   return (
     <div
