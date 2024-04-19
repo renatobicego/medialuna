@@ -10,6 +10,8 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_FIREBAS_APPID,
     measurementId: process.env.NEXT_PUBLIC_FIREBAS_MEASID
 }
+
+console.log(process.env.NEXT_PUBLIC_FIREBAS_BUCKET)
   
 const app = initializeApp(firebaseConfig)
 export const storage = getStorage(app)
