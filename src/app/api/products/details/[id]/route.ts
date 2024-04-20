@@ -27,6 +27,7 @@ export async function GET(
     const relatedProducts = await Product.find({
       categories: { $in: categoryIds }, // Find products with at least one matching category ID
       _id: { $ne: product._id }, // Exclude the requested product itself
+      available: true
     });
 
     return NextResponse.json({ product, relatedProducts });
