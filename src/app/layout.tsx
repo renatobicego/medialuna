@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Medialuna - Consultoría de impacto",
+    title: "Medialuna",
     description: "Medias deportivas y urbanas",
   },
   robots: {
