@@ -12,7 +12,7 @@ const HeroSection = () => {
       3xl:pl-12
     ">
       <h1 className="text-rojo text-4xl xs:text-6xl font-semibold sm:w-1/2 lg:text-7xl 2xl:text-8xl">
-        Vendemos medias Comprame
+        Venta de medias facheras :)
       </h1>
       <Button
         as={Link}
