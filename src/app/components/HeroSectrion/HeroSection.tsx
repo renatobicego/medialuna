@@ -11,7 +11,7 @@ const HeroSection = () => {
       lg:min-h-[50vh] lg:w-[45vw] lg:gap-8
       3xl:pl-12
     ">
-      <h1 className="text-rojo text-4xl xs:text-6xl font-semibold sm:w-1/2 lg:text-7xl 2xl:text-8xl">
+      <h1 className="text-rojo text-4xl xs:text-6xl font-semibold sm:w-1/2 lg:w-full lg:text-7xl 2xl:text-8xl">
         Venta de medias facheras :)
       </h1>
       <Button
@@ -25,7 +25,9 @@ const HeroSection = () => {
       <Image
         src={"/illustrations/zapatillas-medias-ilustracion.jpg"}
         alt="Ilustración de unas medias con zapatillas"
-        className="rounded-l-[36px] w-[70vw] h-auto self-end sm:w-auto sm:absolute bottom-12 right-0 sm:max-h-[80%] lg:h-[50%]"
+        className="rounded-l-[36px] w-[70vw] h-auto self-end sm:w-auto sm:absolute bottom-12
+        max-lg:landscape:bottom-9
+        right-0 sm:max-h-[80%] lg:h-[50%]"
         width={1000}
         height={1200}
       />

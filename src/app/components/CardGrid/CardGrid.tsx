@@ -15,7 +15,7 @@ const CardGrid = ({ cardType, items }: CardGridProps) => {
   const { width: screenWidth } = useWindowSize();
   // Determine the number of items to render based on screenWidth and cardType
   const getNumItemsToRender = () => {
-    if (screenWidth >= 1536 && cardType === CardType.product) {
+    if ((screenWidth >= 1536 || (screenWidth < 1020 && screenWidth >= 640)) && cardType === CardType.product ) {
       return 6; // Render 6 items when screenWidth is 1536px or greater and cardType is product
     } else if (screenWidth < 1536 && cardType === CardType.product) {
       return 4; // Render 4 items when screenWidth is less than 1536px and cardType is product
@@ -30,7 +30,7 @@ const CardGrid = ({ cardType, items }: CardGridProps) => {
   return (
     <div
       className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 xs:gap-3 w-full sm:gap-4 lg:gap-6 3xl:gap-8 ${
-        cardType === CardType.category ? "2xl:grid-cols-2" : "2xl:grid-cols-3"
+        cardType === CardType.category ? "sm:max-lg:grid-cols-4 2xl:grid-cols-2" : "2xl:grid-cols-3"
       } ${pathname.includes(productsUrl) ? "lg:!grid-cols-4" : ""}`}
     >
       {itemsToRender.map(item => {

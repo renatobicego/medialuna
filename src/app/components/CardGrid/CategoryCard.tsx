@@ -17,7 +17,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
         className="absolute top-0 left-0 h-full z-0 object-cover brightness-75 xl:w-full"
         alt={"Categoría de medias: " + category.name}
       />
-      <p className="z-10 relative text-white text-xl xs:text-2xl mx-3 xs:mx-4 my-8 drop-shadow font-semibold lg:mx-6">
+      <p className="z-10 relative text-white text-xl lg:text-2xl mx-3 xs:mx-4 my-8 drop-shadow font-semibold lg:mx-6">
         {category.name}
       </p>
     </Link>

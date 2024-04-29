@@ -26,7 +26,7 @@ const Header = ({ color, textColor }: { color: string; textColor: string }) => {
   };
   return (
     <Navbar
-      className={`h-[12.5vh] lg:h-[15vh] py-1 sm:py-2 `}
+      className={`h-[12.5vh] max-lg:landscape:h-[20vh] md:h-[10vh] lg:h-[15vh] py-1 sm:py-2 `}
       classNames={{
         wrapper: "h-full max-w-full justify-end px-4 md:px-8 2xl:px-[3vw]",
         item: [
@@ -36,7 +36,7 @@ const Header = ({ color, textColor }: { color: string; textColor: string }) => {
           "items-center",
           "data-[active=true]:after:content-['']",
           "data-[active=true]:after:absolute",
-          "data-[active=true]:after:bottom-0",
+          "data-[active=true]:after:bottom-0 max-lg:landscape:data-[active=true]:after:-bottom-2",
           "data-[active=true]:after:left-0",
           "data-[active=true]:after:right-0",
           "data-[active=true]:after:h-[2px]",
@@ -67,7 +67,7 @@ const Header = ({ color, textColor }: { color: string; textColor: string }) => {
             width={100}
             priority
             height={100}
-            className=" w-[25vw] h-auto sm:w-[10vw] md:max-h-full md:w-20 lg:h-full lg:w-auto"
+            className=" w-[25vw] h-auto object-contain sm:w-[10vw] md:max-h-full md:w-20 lg:h-full lg:w-auto"
           />
         </NavbarBrand>
       </NavbarContent>
