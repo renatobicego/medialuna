@@ -62,7 +62,7 @@ export default function RootLayout({
       "Venta minorista de medias deportivas y urbanas",
   };
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="es" className="scroll-smooth">
       <body className={`${bricolage.className} overflow-x-hidden`}>
         <script
           type="application/ld+json"
